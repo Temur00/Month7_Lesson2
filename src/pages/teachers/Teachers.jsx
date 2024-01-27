@@ -23,7 +23,7 @@ const Teachers = ({ user }) => {
     return <Navigate to="/login" replace />;
   }
   return (
-    <div className="all-teacher">
+    <div className="all-teachers">
       <div className="like-header">
         <p className="teachers">Teachers</p>
         <input

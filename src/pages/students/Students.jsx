@@ -23,13 +23,29 @@ const Students = ({ user }) => {
     return <Navigate to="/login" replace />;
   }
   return (
-    <div>
+    <div className="wrong">
       <div className="all-students">
+        <div className="like-header">
+          <p className="students">Students</p>
+          <input
+            className="search"
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search ..."
+          />
+          <select className="filter" name="all" id="all">
+            <option value="all">All</option>
+            <option value="advanced">Advanced</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="beginner">Beginner</option>
+          </select>
+        </div>
         <div className="table">
           <thead>
             <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
+              <th>Firstname</th>
+              <th>Lastname</th>
               <th>Level</th>
               <th>Action</th>
             </tr>
