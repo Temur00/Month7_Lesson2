@@ -18,9 +18,9 @@ const App = () => {
   return (
     <div className="all">
       <Router>
-        {user ? <Sidebar user={user} /> : null}{" "}
-        <div>
-          {user ? <Header user={user} /> : null}{" "}
+        {user ? <Header user={user} /> : null}{" "}
+        <div className="all-ofthem">
+          {user ? <Sidebar user={user} /> : null}{" "}
           <Routes>
             <Route path="/" element={<Main user={user} />} />
             <Route

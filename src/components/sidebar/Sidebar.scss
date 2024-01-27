@@ -3,26 +3,27 @@ body {
 }
 
 .sidebar {
+  left: 0;
   background-color: #f0f0f0;
   padding: 20px;
-  height: 91vh;
+  height: 82.5vh;
+  // height: 100vh;
   ul {
     list-style-type: none;
     padding: 0;
     .menu {
+      position: absolute;
       display: flex;
       gap: 10px;
-      margin-top: -20px;
+      margin-left: 120px;
+      margin-top: -95px;
       .admin {
         font-size: 24px;
         margin-top: 8px;
       }
     }
-    .menu .toggleTextVisibility {
-      margin-left: 100px;
-    }
     .teacher {
-      padding-top: 50px;
+      padding-top: 10px;
     }
     li {
       cursor: pointer;
@@ -48,11 +49,11 @@ body {
       text-decoration: none;
     }
     .logout {
-      margin-top: 330px;
+      margin-top: 370px;
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 24px;
+      font-size: 20px;
       color: #333;
     }
   }
