@@ -19,6 +19,20 @@ const Students = ({ user }) => {
     fetchStudents();
   }, []);
 
+  const handleDelete = (id) => {
+    if (confirm("Are you sure you want to delete this product? ❌")) {
+      axios
+        .delete(`http://localhost:3000/students/${id}`)
+        .then((res) => {
+          console.log("Product deleted successfully ✅", res.data);
+          fetchStudents();
+        })
+        .catch((error) => {
+          console.log("The product was not deleted ❌");
+        });
+    }
+  };
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }
@@ -58,7 +72,9 @@ const Students = ({ user }) => {
                 <td>{student.level}</td>
                 <td>
                   <button>Edit</button>
-                  <button>Delete</button>
+                  <button onClick={() => handleDelete(student.id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

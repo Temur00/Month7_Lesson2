@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Teachers.scss";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import Students from "../students/Students";
 
 const Teachers = ({ user }) => {
   const [teachers, setTeachers] = useState([]);
@@ -19,6 +20,22 @@ const Teachers = ({ user }) => {
   useEffect(() => {
     fetchsetTeachers();
   }, []);
+
+  const handleDelete = (id) => {
+    if (confirm("Are you sure you want to delete this product? ❌")) {
+      axios
+        .delete(`http://localhost:3000/teachers/${id}`)
+        .then((res) => {
+          console.log("Product deleted successfully ✅", res.data);
+          // Fetch teachers data after successful deletion
+          fetchsetTeachers();
+        })
+        .catch((error) => {
+          console.log("The product was not deleted ❌");
+        });
+    }
+  };
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }
@@ -57,7 +74,7 @@ const Teachers = ({ user }) => {
               <td>{teacher.level}</td>
               <td>
                 <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={() => handleDelete(teacher.id)}>Delete</button>
               </td>
             </tr>
           ))}

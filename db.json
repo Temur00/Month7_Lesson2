@@ -1,32 +1,13 @@
 {
   "teachers": [
     {
-      "id": 1,
+      "id": "1",
       "firstname": "Leanne ",
       "lastname": "Graham",
       "level": "middle"
     },
     {
-      "id": 2,
-      "firstname": "Ervin ",
-      "lastname": "Howell",
-      "level": "senior"
-    },
-    {
-      "id": 3,
-      "name": "Clementine Bauch",
-      "firstname": "Clementine ",
-      "lastname": "Bauch",
-      "level": "junior"
-    },
-    {
-      "id": 4,
-      "firstname": "Patricia ",
-      "lastname": "Lebsack",
-      "level": "middle"
-    },
-    {
-      "id": 5,
+      "id": "5",
       "firstname": "Chelsey ",
       "lastname": "Dietich",
       "level": "senior"
@@ -34,32 +15,25 @@
   ],
   "students": [
     {
-      "id": 1,
+      "id": "1",
       "firstname": "Leanne ",
       "lastname": "Graham",
       "level": "beginner"
     },
     {
-      "id": 2,
+      "id": "2",
       "firstname": "Ervin ",
       "lastname": "Howell",
       "level": "intermediate"
     },
     {
-      "id": 3,
-      "name": "Clementine Bauch",
-      "firstname": "Clementine ",
-      "lastname": "Bauch",
-      "level": "intermediate"
-    },
-    {
-      "id": 4,
+      "id": "4",
       "firstname": "Patricia ",
       "lastname": "Lebsack",
       "level": "advanced"
     },
     {
-      "id": 5,
+      "id": "5",
       "firstname": "Chelsey ",
       "lastname": "Dietich",
       "level": "beginner"
