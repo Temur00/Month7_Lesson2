@@ -38,3 +38,26 @@
     }
   }
 }
+
+.table {
+  thead {
+    tr {
+      display: flex;
+      gap: 100px;
+      th {
+        width: 200px;
+        display: flex;
+        justify-content: start;
+      }
+    }
+  }
+  tbody {
+    tr {
+      display: flex;
+      justify-content: space-between;
+      td {
+        width: 200px;
+      }
+    }
+  }
+}

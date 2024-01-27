@@ -2,23 +2,31 @@ import React, { useEffect, useState } from "react";
 import "./Teachers.scss";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
-import Students from "../students/Students";
 
 const Teachers = ({ user }) => {
   const [teachers, setTeachers] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searched, setSearched] = useState("");
 
-  const fetchsetTeachers = async () => {
+  const fetchTeachers = async () => {
     try {
       const res = await axios.get(`http://localhost:3000/teachers`);
-      const str = await res.data;
-      setTeachers(str);
+      setTeachers(res.data);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleCategory = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  const handleSearch = (e) => {
+    setSearched(e.target.value);
+  };
+
   useEffect(() => {
-    fetchsetTeachers();
+    fetchTeachers();
   }, []);
 
   const handleDelete = (id) => {
@@ -27,8 +35,7 @@ const Teachers = ({ user }) => {
         .delete(`http://localhost:3000/teachers/${id}`)
         .then((res) => {
           console.log("Product deleted successfully ✅", res.data);
-          // Fetch teachers data after successful deletion
-          fetchsetTeachers();
+          fetchTeachers(); // Fetch teachers data after successful deletion
         })
         .catch((error) => {
           console.log("The product was not deleted ❌");
@@ -39,6 +46,22 @@ const Teachers = ({ user }) => {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
+
+  // FILTER
+  const filteredTeachers =
+    selectedCategory === "all"
+      ? teachers
+      : teachers.filter((teacher) => teacher.level === selectedCategory);
+
+  // SEARCH
+  const searchedTeachers = searched
+    ? filteredTeachers.filter(
+        (teacher) =>
+          teacher.firstname.toLowerCase().includes(searched.toLowerCase()) ||
+          teacher.lastname.toLowerCase().includes(searched.toLowerCase())
+      )
+    : filteredTeachers;
+
   return (
     <div className="all-teachers">
       <div className="like-header">
@@ -49,8 +72,15 @@ const Teachers = ({ user }) => {
           name="search"
           id="search"
           placeholder="Search ..."
+          onChange={handleSearch}
         />
-        <select className="filter" name="all" id="all">
+        <select
+          className="filter"
+          name="all"
+          id="all"
+          onChange={handleCategory}
+          value={selectedCategory}
+        >
           <option value="all">All</option>
           <option value="senior">Senior</option>
           <option value="middle">Middle</option>
@@ -67,7 +97,7 @@ const Teachers = ({ user }) => {
           </tr>
         </thead>
         <tbody>
-          {teachers.map((teacher) => (
+          {searchedTeachers.map((teacher) => (
             <tr key={teacher.id}>
               <td>{teacher.firstname}</td>
               <td>{teacher.lastname}</td>

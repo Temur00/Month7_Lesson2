@@ -5,14 +5,24 @@ import axios from "axios";
 
 const Students = ({ user }) => {
   const [students, setStudents] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searched, setSearched] = useState("");
+
   const fetchStudents = async () => {
     try {
       const res = await axios.get(`http://localhost:3000/students`);
-      const str = await res.data;
-      setStudents(str);
+      setStudents(res.data);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleCategory = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  const handleSearch = (e) => {
+    setSearched(e.target.value);
   };
 
   useEffect(() => {
@@ -36,6 +46,22 @@ const Students = ({ user }) => {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
+
+  // FILTER
+  const filteredStudents =
+    selectedCategory === "all"
+      ? students
+      : students.filter((student) => student.level === selectedCategory);
+
+  // SEARCH
+  const searchedStudents = searched
+    ? filteredStudents.filter(
+        (student) =>
+          student.firstname.toLowerCase().includes(searched.toLowerCase()) ||
+          student.lastname.toLowerCase().includes(searched.toLowerCase())
+      )
+    : filteredStudents;
+
   return (
     <div className="wrong">
       <div className="all-students">
@@ -47,15 +73,22 @@ const Students = ({ user }) => {
             name="search"
             id="search"
             placeholder="Search ..."
+            onChange={handleSearch}
           />
-          <select className="filter" name="all" id="all">
+          <select
+            className="filter"
+            name="all"
+            id="all"
+            onChange={handleCategory}
+            value={selectedCategory}
+          >
             <option value="all">All</option>
             <option value="advanced">Advanced</option>
             <option value="intermediate">Intermediate</option>
             <option value="beginner">Beginner</option>
           </select>
         </div>
-        <div className="table">
+        <table className="table">
           <thead>
             <tr>
               <th>Firstname</th>
@@ -65,7 +98,7 @@ const Students = ({ user }) => {
             </tr>
           </thead>
           <tbody>
-            {students.map((student) => (
+            {searchedStudents.map((student) => (
               <tr key={student.id}>
                 <td>{student.firstname}</td>
                 <td>{student.lastname}</td>
@@ -79,7 +112,7 @@ const Students = ({ user }) => {
               </tr>
             ))}
           </tbody>
-        </div>
+        </table>
       </div>
     </div>
   );
