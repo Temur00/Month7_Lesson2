@@ -1,4 +1,34 @@
-.teachers {
-  font-size: 36px;
-  color: rgb(255, 247, 0);
+.all-teacher {
+  padding-inline: 20px;
+  border-radius: 8px;
+  margin-left: 30px;
+  margin-top: 30px;
+  background-color: #f1f1f1;
+
+  .like-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .teachers {
+      font-size: 32px;
+    }
+    .search {
+      margin-left: 250px;
+      border: none;
+      border-radius: 8px;
+      width: 380px;
+      height: 40px;
+      padding: 8px;
+      outline: none;
+    }
+    .filter {
+      margin-left: 350px;
+      border: none;
+      border-radius: 8px;
+      width: 150px;
+      height: 40px;
+      padding: 8px;
+      outline: none;
+    }
+  }
 }

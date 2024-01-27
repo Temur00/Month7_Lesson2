@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import "./Profile.scss";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const Profile = ({ user, setUser }) => {
   const navigate = useNavigate();
@@ -27,7 +28,9 @@ const Profile = ({ user, setUser }) => {
         )}{" "}
       </div>
       <div className="btn-cnt">
-        <button onClick={handleLogout}>Logout</button>
+        <button className="logout" onClick={handleLogout}>
+          Logout
+        </button>
         <NavLink to="/">Continue</NavLink>
       </div>
     </div>
